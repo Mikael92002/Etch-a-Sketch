@@ -95,3 +95,6 @@ div {
     transform: scale(0.98);
     box-shadow: black;
 }
+.randomColor{
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}

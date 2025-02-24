@@ -2,9 +2,8 @@ const masterDiv = document.querySelector(".master-div");
 masterDiv.style.display = "flex";
 
 
-
-
 const button = document.querySelector(".button-prompt");
+
 
 button.addEventListener("click", () => {
     let customSize = +prompt("Enter number of squares: ");
@@ -39,8 +38,9 @@ function makeGrid(numOfSquares) {
 
     for (let i = 0; i <= gridSize; i++) {
         const div = document.createElement("div");
-        div.style.width = "7.2px";
-        div.style.height = "7.2px";
+
+        div.style.width = `${720/(numOfSquares)}px`;
+        div.style.height = `${720/(numOfSquares)}px`;
         
 
         div.addEventListener("mouseover", () => {
@@ -149,11 +149,23 @@ function makeGrid(numOfSquares) {
             currentColor = "white";
         })
 
+        const randomColorDiv = document.createElement("div");
+        randomColorDiv.classList.add("colors");
+        randomColorDiv.classList.add("randomColor");
+        randomColorDiv.addEventListener("click", () =>{
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+
+            currentColor = `rgb(${r}, ${g}, ${b})`;
+        })
+
         colorHolderDiv.appendChild(redDiv);
         colorHolderDiv.appendChild(blueDiv);
         colorHolderDiv.appendChild(greenDiv);
         colorHolderDiv.appendChild(blackDiv);
         colorHolderDiv.appendChild(whiteDiv);
+        colorHolderDiv.appendChild(randomColorDiv);
 
         colorPickerDiv.appendChild(colorHolderDiv);
 
