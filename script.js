@@ -10,7 +10,7 @@ const button = document.querySelector(".button-prompt");
 button.addEventListener("click", () =>{
 let customSize = +prompt("Enter number of squares: ");
 
-if(typeof(customSize) === "number" && customSize<=100){
+if(typeof(customSize) === "number" && customSize<=100 && customSize>0){
 makeGrid(customSize);
 }
 else console.log("Try again!");
@@ -24,6 +24,7 @@ function makeGrid(numOfSquares){
         for(let k = 0;k<parentDivArray.length;k++){
             body.removeChild(parentDivArray[k]);
         }
+        parentDivArray.splice(0,parentDivArray.length-1);
     }
 
     const gridSize = numOfSquares*numOfSquares;
