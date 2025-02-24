@@ -1,0 +1,26 @@
+.master-div{
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    width:fit-content;
+    height:auto;
+    margin:auto;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.master-div-parent{
+    width: 960px;
+    height: 640px;
+    display:flex;
+    /* border: 1px solid blue; */
+    margin: auto;
+}
+
+.button-prompt{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
