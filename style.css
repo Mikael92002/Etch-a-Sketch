@@ -12,7 +12,7 @@
 
 .master-div-parent{
     width: 960px;
-    height: 640px;
+    height: 720px;
     display:flex;
     /* border: 1px solid blue; */
     margin: auto;
@@ -23,4 +23,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
+}
+
+div{
+    user-select: none;
 }
