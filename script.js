@@ -1,7 +1,7 @@
 const masterDiv = document.querySelector(".master-div");
 masterDiv.style.display = "flex";
 
-// masterDiv.style.flexShrink = "1";
+
 
 
 const button = document.querySelector(".button-prompt");
@@ -17,8 +17,11 @@ button.addEventListener("click", () => {
 
 let gridMade = false;
 let parentDivArray = [];
+let colorPickerDivArray = [];
+let buttonValidInput = 0;
 
 function makeGrid(numOfSquares) {
+    buttonValidInput++;
     if (parentDivArray.length > 0) {
         for (let k = 0; k < parentDivArray.length; k++) {
             masterDiv.removeChild(parentDivArray[k]);
@@ -30,20 +33,21 @@ function makeGrid(numOfSquares) {
     const divArray = [];
     let parentDivArrayCounter = 0;
     let mouseCurrentlyPressed = false;
+    let currentColor = "red";
 
 
     for (let i = 0; i <= gridSize; i++) {
         const div = document.createElement("div");
         div.style.width = "7.2px";
         div.style.height = "7.2px";
-        // div.style.border = "1px solid red";
+        
 
         div.addEventListener("mouseover", () => {
             if (div.id != "colored") {
-                div.style.backgroundColor = "yellow";
+                div.style.backgroundColor = currentColor;
             }
             if(mouseCurrentlyPressed){
-                div.style.backgroundColor = "black";
+                div.style.backgroundColor = currentColor;
                 div.id = "colored";
             }
         })
@@ -53,7 +57,7 @@ function makeGrid(numOfSquares) {
             }
         })
         div.addEventListener("mousedown", () => {
-                div.style.backgroundColor = "black";
+                div.style.backgroundColor = currentColor;
                 div.id = "colored";
                 mouseCurrentlyPressed = true;
         })
@@ -82,4 +86,52 @@ function makeGrid(numOfSquares) {
 
 
     gridMade = true;
+
+    if(buttonValidInput>0){
+        const body = document.querySelector("body");
+        for(let h = 0;h<colorPickerDivArray.length;h++){
+            body.removeChild(colorPickerDivArray[h]);
+        }
+        const colorPickerDiv = document.createElement("div");
+        colorPickerDiv.id = "color-picker";
+        colorPickerDiv.textContent = "Pick a color: "
+        
+        const colorHolderDiv = document.createElement("div");
+
+        const redDiv = document.createElement("div");
+        redDiv.classList.add("colors");
+        redDiv.classList.add("red");
+        redDiv.addEventListener("click", () =>{
+            currentColor = "red";
+        })
+
+        const blueDiv = document.createElement("div");
+        blueDiv.classList.add("blue");
+        blueDiv.classList.add("colors");
+        blueDiv.addEventListener("click", () => {
+            currentColor = "blue";
+        })
+
+        const greenDiv = document.createElement("div");
+        greenDiv.classList.add("colors");
+        greenDiv.classList.add("green");
+        greenDiv.addEventListener("click", () =>{
+            currentColor = "green";
+        })
+
+        colorHolderDiv.appendChild(redDiv);
+        colorHolderDiv.appendChild(blueDiv);
+        colorHolderDiv.appendChild(greenDiv);
+
+        colorPickerDiv.appendChild(colorHolderDiv);
+
+
+    
+        
+        body.appendChild(colorPickerDiv);
+        colorPickerDivArray[0] = colorPickerDiv;
+        
+    }
 }
+
+
