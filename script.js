@@ -20,7 +20,7 @@ let gridMade = false;
 let parentDivArray = [];
 
 function makeGrid(numOfSquares){
-    if(gridMade){
+    if(parentDivArray.length>0){
         for(let k = 0;k<parentDivArray.length;k++){
             body.removeChild(parentDivArray[k]);
         }
