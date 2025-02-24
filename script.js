@@ -18,6 +18,7 @@ button.addEventListener("click", () => {
 let gridMade = false;
 let parentDivArray = [];
 let colorPickerDivArray = [];
+let clearButtonArray = [];
 let buttonValidInput = 0;
 
 function makeGrid(numOfSquares) {
@@ -89,9 +90,24 @@ function makeGrid(numOfSquares) {
 
     if(buttonValidInput>0){
         const body = document.querySelector("body");
+        const clearButton = document.createElement("button");
+
+        clearButton.addEventListener("click", () =>{
+            for(divs of divArray){
+                divs.style.backgroundColor = "white";
+            }
+        })
+
+        clearButton.textContent = "clear";
+        clearButton.id = "clear-button";
+
         for(let h = 0;h<colorPickerDivArray.length;h++){
             body.removeChild(colorPickerDivArray[h]);
         }
+        for(let m = 0;m<clearButtonArray.length;m++){
+            body.removeChild(clearButtonArray[m]);
+        }
+
         const colorPickerDiv = document.createElement("div");
         colorPickerDiv.id = "color-picker";
         colorPickerDiv.textContent = "Pick a color: "
@@ -109,19 +125,35 @@ function makeGrid(numOfSquares) {
         blueDiv.classList.add("blue");
         blueDiv.classList.add("colors");
         blueDiv.addEventListener("click", () => {
-            currentColor = "blue";
+            currentColor = "rgb(0, 157, 255)";
         })
 
         const greenDiv = document.createElement("div");
         greenDiv.classList.add("colors");
         greenDiv.classList.add("green");
         greenDiv.addEventListener("click", () =>{
-            currentColor = "green";
+            currentColor = "rgb(13, 255, 0)";
+        })
+
+        const blackDiv = document.createElement("div");
+        blackDiv.classList.add("colors");
+        blackDiv.classList.add("black");
+        blackDiv.addEventListener("click", () =>{
+            currentColor = "black";
+        })
+
+        const whiteDiv = document.createElement("div");
+        whiteDiv.classList.add("colors");
+        whiteDiv.classList.add("white");
+        whiteDiv.addEventListener("click", () =>{
+            currentColor = "white";
         })
 
         colorHolderDiv.appendChild(redDiv);
         colorHolderDiv.appendChild(blueDiv);
         colorHolderDiv.appendChild(greenDiv);
+        colorHolderDiv.appendChild(blackDiv);
+        colorHolderDiv.appendChild(whiteDiv);
 
         colorPickerDiv.appendChild(colorHolderDiv);
 
@@ -129,8 +161,10 @@ function makeGrid(numOfSquares) {
     
         
         body.appendChild(colorPickerDiv);
+        body.appendChild(clearButton);
+
         colorPickerDivArray[0] = colorPickerDiv;
-        
+        clearButtonArray[0] = clearButton;
     }
 }
 
